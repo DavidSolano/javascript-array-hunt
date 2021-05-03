@@ -99,31 +99,64 @@ function arrayHunt() {
     let count = myArray.length;
     let last = myArray[count - 1];
 
-    $("td#firstLast").append(first + " " + last);
+    $("td#firstLast").text(first + " " + last);
 
 
     /*
     Find the first string that contains an 'n'.
     Output it to td#firstEnn
      */
+    for (let aValue of myArray)
+    {
+        if(aValue.includes("n"))
+        {
+            $("td#firstEnn").text(aValue);
+            break;
+        }
+    }
 
 
     /*
     Find all of the strings with less than 6 characters.
     Output them to td#lessThanSix
      */
+    for (let i = 0; i < myArray.length; i++)
+    {
+        let aValue = myArray[i];
+
+        if(aValue.length < 6)
+        {
+            $("td#lessThanSix").append(aValue)
+        }
+    }
 
 
     /*
     Find the longest string in the array.
     Output it to td#longName
      */
+    let x = 0
+
+    for (let i = 0; i < myArray.length; i++) {
+        if(myArray[i].length > x)
+        {
+            x = myArray[i].length
+            $("td#longName").text(myArray[i])
+        }
+    }
 
 
     /*
     Find all of the strings that do not contain the letter 's'.
     Output them to td#noEss
      */
+    for (let aValue of myArray)
+    {
+        if(aValue => !myArray.includes("s"))
+        {
+             $("td#noEss").append(aValue + ",");
+        }
+    }
 
 
     /*
@@ -131,11 +164,22 @@ function arrayHunt() {
     in uppercase, to td#upperVowels
      */
 
+    for(let i = 0; i < myArray.length; i++) {
+        let x = myArray.slice();
+        while(x[i].includes("a") || x[i].includes("e") || x[i].includes("i")
+        || x[i].includes("o") || x[i].includes("u")){
+            x[i] = x[i].replace("a","A").replace("e","E").replace("i","I").replace("o","O").replace("u","U");
+        }
+        $("#upperVowels").append(x[i] + ",");
+    }
 
     /*
     Output all of the strings in reverse order and separated by
     ' - ' to td#reverseDash
      */
+    let back = myArray.reverse()
+    let l = back.join("-")
 
+    $("td#reverseDash").text(l)
 
 }
